@@ -1,0 +1,26 @@
+.country-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+}
+
+.country-table th,
+.country-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.country-table th {
+  background-color: #2d6cdf;
+  color: white;
+}
+
+.country-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.country-table tr:hover {
+  background-color: #e6f0ff;
+}

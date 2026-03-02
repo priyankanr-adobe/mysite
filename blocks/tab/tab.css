@@ -1,0 +1,30 @@
+.tab-list {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 15px;
+}
+ 
+.tab-button {
+  padding: 10px 20px;
+  border: none;
+  background: #f4f4f4;
+  cursor: pointer;
+  font-weight: bold;
+}
+ 
+.tab-button.active {
+  background: #0072ce;
+  color: white;
+}
+ 
+.tab-button:hover {
+  background: #005fa3;
+  color: white;
+}
+ 
+.tab-panel {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-top: none;
+}
+ 
