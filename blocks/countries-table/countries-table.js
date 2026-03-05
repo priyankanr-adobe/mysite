@@ -1,12 +1,9 @@
 export default async function decorate(block) {
   const url = block.querySelector('a')?.href || block.textContent.trim();
-
   const resp = await fetch(url);
   const json = await resp.json();
-
   const table = document.createElement('table');
   table.classList.add('countries-table');
-
   const thead = document.createElement('thead');
   thead.innerHTML = `
     <tr>
@@ -15,10 +12,8 @@ export default async function decorate(block) {
       <th>Continent</th>
     </tr>
   `;
-
   const tbody = document.createElement('tbody');
-
-  json.data.forEach(row => {
+  json.data.forEach((row) => {  // <-- parentheses added
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${row.Country}</td>
@@ -27,7 +22,6 @@ export default async function decorate(block) {
     `;
     tbody.appendChild(tr);
   });
-
   table.append(thead, tbody);
   block.innerHTML = '';
   block.appendChild(table);
