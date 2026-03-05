@@ -6,7 +6,7 @@ export default async function decorate(block) {
     const data = await response.json();
     const fields = data.data || data;
     const form = document.createElement('form');
-    form.classList.add('dynamic-form'); 
+    form.classList.add('dynamic-form');
     fields.forEach((field) => {
       if (!field.Type) return;
       // Submit button
@@ -26,10 +26,7 @@ export default async function decorate(block) {
         input = document.createElement('textarea');
       } else {
         input = document.createElement('input');
-        input.type =
-          field.Type.toLowerCase() === 'mobile'
-            ? 'tel'
-            : field.Type.toLowerCase();
+        input.type =field.Type.toLowerCase() === 'mobile'? 'tel': field.Type.toLowerCase();
       }
       input.name = field.Name.toLowerCase(); // important for sheet match
       input.placeholder = field.placeholder || '';

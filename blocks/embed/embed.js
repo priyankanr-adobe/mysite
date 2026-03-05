@@ -8,7 +8,7 @@ export default function decorate(block) {
   // If image exists → use as thumbnail
   if (image) {
     image.classList.add('embed-thumbnail');
-    wrapper.appendChild(image); 
+    wrapper.appendChild(image);
     wrapper.addEventListener('click', () => {
       const iframe = document.createElement('iframe');
       iframe.src = convertToEmbedURL(url);
