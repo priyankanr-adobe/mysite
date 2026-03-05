@@ -6,11 +6,9 @@ function convertToEmbedURL(url) {
       ? `https://www.youtube.com/embed/${videoId[1]}?autoplay=1`
       : url;
   }
- 
   if (url.includes('google.com/maps')) {
     return url.replace('/maps/', '/maps/embed/');
   }
- 
   return url;
 }
 export default function decorate(block) {
