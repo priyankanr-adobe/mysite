@@ -13,7 +13,7 @@ export default async function decorate(block) {
     </tr>
   `;
   const tbody = document.createElement('tbody');
-  json.data.forEach((row) => {  // <-- parentheses added
+  json.data.forEach((row) => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${row.Country}</td>
