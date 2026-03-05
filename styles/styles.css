@@ -264,7 +264,7 @@ main .section.highlight {
   color: blue;
 }
 
-/*css for card*/
+/* css for card */
 .cards-card-image img {
   width: 100%;
   height: auto;
@@ -285,20 +285,13 @@ main .section.highlight {
 
 .cards-card-body strong {
   font-size: 18px;
-  color: #0066cc;
+  color: blue;
 }
 
 .cards-card-body em {
   color: red;
 }
 
-.cards-card-body {
-  background-color: wheat;
-  border-radius: 8px;
-  padding: 15px;
-}
-
-
 .priya{
-  background-color: rgb(201, 123, 20);
+  background-color: red ;
 }
