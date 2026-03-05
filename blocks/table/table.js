@@ -1,10 +1,10 @@
 export default async function decorate(block) {
   const link = block.querySelector('a');
   if (!link) return;
-  const url = link.href;
+  const { href: url } = link;
   const response = await fetch(url);
   const json = await response.json();
-  const data = json.data;
+  const { data } = json;
   // Clear block
   block.innerHTML = '';
   // Create table

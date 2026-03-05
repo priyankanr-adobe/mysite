@@ -1,3 +1,18 @@
+// Convert URL to embed if needed
+function convertToEmbedURL(url) {
+  if (url.includes('youtube.com') || url.includes('youtu.be')) {
+    const videoId = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
+    return videoId
+      ? `https://www.youtube.com/embed/${videoId[1]}?autoplay=1`
+      : url;
+  }
+ 
+  if (url.includes('google.com/maps')) {
+    return url.replace('/maps/', '/maps/embed/');
+  }
+ 
+  return url;
+}
 export default function decorate(block) {
   const link = block.querySelector('a');
   const image = block.querySelector('img');
@@ -27,17 +42,4 @@ export default function decorate(block) {
   }
   block.innerHTML = '';
   block.appendChild(wrapper);
-} 
-// Convert URL to embed if needed
-function convertToEmbedURL(url) {
-  if (url.includes('youtube.com') || url.includes('youtu.be')) {
-    const videoId = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
-    return videoId
-      ? `https://www.youtube.com/embed/${videoId[1]}?autoplay=1`
-      : url;
-  }
-  if (url.includes('google.com/maps')) {
-    return url.replace('/maps/', '/maps/embed/');
-  }
-  return url;
 }
