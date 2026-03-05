@@ -1,0 +1,16 @@
+.countries-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.countries-table th,
+.countries-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.countries-table th {
+  background-color: #f2f2f2;
+}

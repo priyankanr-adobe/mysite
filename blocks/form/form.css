@@ -1,50 +1,27 @@
 form {
-  max-width: 500px;
-  margin: 20px auto;
+  width: 400px;
+  margin: 30px auto;
   padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  font-family: Arial, sans-serif;
+  border-radius: 10px;
+  background: #f3f4f6;
 }
 
-form label {
+label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-form input,
-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-form textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-form button,
-form input[type="submit"] {
-  background-color: #2d6cdf;
-  color: white;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-form button:hover,
-form input[type="submit"]:hover {
-  background-color: #1b4fbf;
-}
-
-.form-status {
   margin-top: 10px;
-  font-weight: bold;
-  color: green;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 5px;
 }
