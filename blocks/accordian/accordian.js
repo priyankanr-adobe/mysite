@@ -7,7 +7,7 @@ export default function decorate(block) {
       const content = columns[1];
       header.classList.add('accordion-header');
       content.classList.add('accordion-content');
-      content.style.display = 'none'; 
+      content.style.display = 'none';
       header.addEventListener('click', () => {
         const isOpen = content.style.display === 'block';
         // close all
