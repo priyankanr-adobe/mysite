@@ -248,6 +248,7 @@ main > .section:first-of-type {
   }
 }
 
+/*section metadata*/
 .section.featured {
   background:
     radial-gradient(circle at 15% 10%, rgb(130 60 180 / 20%), transparent 28%),
