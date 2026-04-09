@@ -260,16 +260,19 @@ main > .section:first-of-type {
   border-radius: 28px;
   color: #eaf0ff;
   box-sizing: border-box;
-  margin: 40px 40px;
-  padding-top: 20px;
-  padding-bottom: 24px;
-  padding-left: 20px;
-  padding-right: 20px;
+  margin: 40px;
+  
 }
 
 .section.featured > div {
   max-width: 100%;
   margin: 0;
+}
+
+.section.featured h2 + p {
+  margin: 0 0 14px;
+  color: #9fb3d9;
+  font-size: 12px;
 }
 
 .section.featured > div > p:first-child {
@@ -290,12 +293,6 @@ main > .section:first-of-type {
   line-height: 1.1;
   font-weight: 700;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
-.section.featured h2 + p {
-  margin: 0 0 14px;
-  color: #9fb3d9;
-  font-size: 12px;
 }
 
 .section.featured .columns.block {
@@ -341,7 +338,7 @@ main > .section:first-of-type {
   font-size: 16px;
 } 
 
-@media (max-width: 1199px) {
+@media (width <= 1199px) {
   .section.featured h2 {
     font-size: 38px;
   }
@@ -351,7 +348,7 @@ main > .section:first-of-type {
   }
 }
 
-@media (max-width: 767px) {
+@media (width <= 767px) {
   .section.featured {
     padding: 20px 16px 24px;
     border-radius: 20px;
