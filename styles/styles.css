@@ -314,7 +314,7 @@ main > .section:first-of-type {
   justify-content: space-between;
   min-height: 76px;
   border: 1px solid rgb(130 145 180 / 12%);
-  border-radius: 20px;
+  border-radius: 18px;
   background: rgb(7 15 30 / 70%);
   color: #dfe7ff;
   font-size: 16px;
