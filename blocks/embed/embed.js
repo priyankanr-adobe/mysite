@@ -1,7 +1,11 @@
 function getVideoId(url) {
   try {
     const u = new URL(url);
-    if (u.hostname.includes('youtu.be')) return u.pathname.slice(1);
+
+    if (u.hostname.includes('youtu.be')) {
+      return u.pathname.slice(1);
+    }
+
     return u.searchParams.get('v') || '';
   } catch {
     return '';
@@ -14,6 +18,7 @@ function openPopup(url) {
 
   const popup = document.createElement('div');
   popup.className = 'popup';
+
   popup.innerHTML = `
     <button class="popup-close" type="button" aria-label="Close">×</button>
     <div class="popup-box">
@@ -26,13 +31,32 @@ function openPopup(url) {
     </div>
   `;
 
-  const close = () => popup.remove();
+  const close = () => {
+    popup.remove();
+    document.body.classList.remove('popup-open');
+  };
 
   popup.querySelector('.popup-close').addEventListener('click', close);
+
   popup.addEventListener('click', (e) => {
     if (e.target === popup) close();
   });
 
+  document.addEventListener(
+    'keydown',
+    function onEsc(e) {
+      if (e.key === 'Escape') {
+        close();
+      } else {
+        return;
+      }
+
+      document.removeEventListener('keydown', onEsc);
+    },
+    { once: true },
+  );
+
+  document.body.classList.add('popup-open');
   document.body.append(popup);
 }
 
@@ -85,13 +109,19 @@ export default function decorate(block) {
     thumb.type = 'button';
     thumb.setAttribute('aria-label', `Open video: ${title}`);
     thumb.innerHTML = imageCell.innerHTML;
-    thumb.addEventListener('click', () => openPopup(link));
+
+    thumb.addEventListener('click', () => {
+      thumb.blur();
+      openPopup(link);
+    });
 
     const tagsWrap = document.createElement('div');
     tagsWrap.className = 'card-tags';
 
     tags.split(',').forEach((tag) => {
-      if (tag.trim()) tagsWrap.append(makeTag(tag));
+      if (tag.trim()) {
+        tagsWrap.append(makeTag(tag));
+      }
     });
 
     card.append(heading, thumb, tagsWrap);
@@ -101,26 +131,31 @@ export default function decorate(block) {
   const scroller = document.createElement('div');
   scroller.className = 'cards-scroller';
 
-  const prev = document.createElement('button');
-  prev.className = 'cards-arrow cards-arrow-prev';
-  prev.type = 'button';
-  prev.setAttribute('aria-label', 'Scroll left');
-  prev.innerHTML = '&#8249;';
+  scroller.append(wrap);
 
-  const next = document.createElement('button');
-  next.className = 'cards-arrow cards-arrow-next';
-  next.type = 'button';
-  next.setAttribute('aria-label', 'Scroll right');
-  next.innerHTML = '&#8250;';
+  if (wrap.children.length >= 4) {
+    const prev = document.createElement('button');
+    prev.className = 'cards-arrow cards-arrow-prev';
+    prev.type = 'button';
+    prev.setAttribute('aria-label', 'Scroll left');
+    prev.innerHTML = '‹';
 
-  prev.addEventListener('click', () => scrollCards(wrap, -1));
-  next.addEventListener('click', () => scrollCards(wrap, 1));
+    const next = document.createElement('button');
+    next.className = 'cards-arrow cards-arrow-next';
+    next.type = 'button';
+    next.setAttribute('aria-label', 'Scroll right');
+    next.innerHTML = '›';
 
-  const controls = document.createElement('div');
-  controls.className = 'cards-controls';
-  controls.append(prev, next);
+    prev.addEventListener('click', () => scrollCards(wrap, -1));
+    next.addEventListener('click', () => scrollCards(wrap, 1));
 
-  scroller.append(wrap, controls);
+    const controls = document.createElement('div');
+    controls.className = 'cards-controls';
+    controls.append(prev, next);
+
+    scroller.append(controls);
+  }
+
   block.textContent = '';
   block.append(scroller);
 }
