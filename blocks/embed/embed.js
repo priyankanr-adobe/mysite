@@ -2,7 +2,7 @@ function getVideoId(url) {
   try {
     const u = new URL(url);
     if (u.hostname.includes('youtu.be')) return u.pathname.slice(1);
-    return u.searchParams.get('v');
+    return u.searchParams.get('v') || '';
   } catch {
     return '';
   }
@@ -15,10 +15,11 @@ function openPopup(url) {
   const popup = document.createElement('div');
   popup.className = 'popup';
   popup.innerHTML = `
-    <button class="popup-close" aria-label="Close">×</button>
+    <button class="popup-close" type="button" aria-label="Close">×</button>
     <div class="popup-box">
       <iframe
         src="https://www.youtube.com/embed/${id}?autoplay=1"
+        title="YouTube video"
         allow="autoplay; encrypted-media; picture-in-picture"
         allowfullscreen>
       </iframe>
@@ -27,10 +28,10 @@ function openPopup(url) {
 
   const close = () => popup.remove();
 
-  popup.querySelector('.popup-close').onclick = close;
-  popup.onclick = (e) => {
+  popup.querySelector('.popup-close').addEventListener('click', close);
+  popup.addEventListener('click', (e) => {
     if (e.target === popup) close();
-  };
+  });
 
   document.body.append(popup);
 }
@@ -40,6 +41,19 @@ function makeTag(text) {
   span.className = 'card-tag';
   span.textContent = text.trim();
   return span;
+}
+
+function scrollCards(container, direction) {
+  const card = container.querySelector('.card-item');
+  if (!card) return;
+
+  const gap = 14;
+  const amount = card.offsetWidth + gap;
+
+  container.scrollBy({
+    left: direction * amount,
+    behavior: 'smooth',
+  });
 }
 
 export default function decorate(block) {
@@ -69,8 +83,9 @@ export default function decorate(block) {
     const thumb = document.createElement('button');
     thumb.className = 'card-thumb';
     thumb.type = 'button';
+    thumb.setAttribute('aria-label', `Open video: ${title}`);
     thumb.innerHTML = imageCell.innerHTML;
-    thumb.onclick = () => openPopup(link);
+    thumb.addEventListener('click', () => openPopup(link));
 
     const tagsWrap = document.createElement('div');
     tagsWrap.className = 'card-tags';
@@ -83,6 +98,30 @@ export default function decorate(block) {
     wrap.append(card);
   });
 
+  const scroller = document.createElement('div');
+  scroller.className = 'cards-scroller';
+
+  const prev = document.createElement('button');
+  prev.className = 'cards-arrow cards-arrow-prev';
+  prev.type = 'button';
+  prev.setAttribute('aria-label', 'Scroll left');
+  prev.innerHTML = '&#8249;';
+
+  const next = document.createElement('button');
+  next.className = 'cards-arrow cards-arrow-next';
+  next.type = 'button';
+  next.setAttribute('aria-label', 'Scroll right');
+  next.innerHTML = '&#8250;';
+
+  prev.addEventListener('click', () => scrollCards(wrap, -1));
+  next.addEventListener('click', () => scrollCards(wrap, 1));
+
+  const controls = document.createElement('div');
+  controls.className = 'cards-controls';
+  controls.append(prev, next);
+
+  scroller.append(wrap, controls);
+  
   block.textContent = '';
-  block.append(wrap);
+  block.append(scroller);
 }
