@@ -6,7 +6,6 @@
 
 .embed.cards .cards-scroller {
   position: relative;
-  padding: 0 36px;
 }
 
 .embed.cards .cards-controls {
@@ -23,7 +22,6 @@
   padding-bottom: 8px;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  -ms-overflow-style: none;
 }
 
 .embed.cards .cards-wrap::-webkit-scrollbar {
@@ -32,7 +30,6 @@
 
 .embed.cards .card-item {
   flex: 0 0 calc((100% - 28px) / 3);
-  width: 320px;
   padding: 16px;
   border: 1px solid rgb(120 135 170 / 22%);
   border-radius: 28px;
@@ -111,6 +108,9 @@
 }
 
 .embed.cards .cards-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 32px;
   height: 32px;
   border: 1px solid rgb(130 145 180 / 25%);
@@ -120,9 +120,6 @@
   font-size: 26px;
   line-height: 1;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .embed.cards .cards-arrow:hover {
@@ -176,7 +173,6 @@ body.popup-open {
 @media (width <= 991px) {
   .embed.cards .card-item {
     flex: 0 0 280px;
-    width: 280px;
   }
 }
 
@@ -187,7 +183,6 @@ body.popup-open {
 
   .embed.cards .card-item {
     flex: 0 0 280px;
-    width: 280px;
     padding: 16px;
     border-radius: 22px;
   }
@@ -225,6 +220,5 @@ body.popup-open {
   .popup-close {
     top: 10px;
     right: 14px;
-    font-size: 32px;
   }
 }
