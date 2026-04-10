@@ -121,7 +121,6 @@ export default function decorate(block) {
   controls.append(prev, next);
 
   scroller.append(wrap, controls);
-  
   block.textContent = '';
   block.append(scroller);
 }
