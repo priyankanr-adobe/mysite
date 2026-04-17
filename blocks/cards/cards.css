@@ -241,7 +241,7 @@
   height: 60vh;
   border-radius: 16px;
   overflow: hidden;
-  background: #000;
+  background: transparent;
 }
 
 .popup-box iframe {
